@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Logo2 from "../assets/logo2.svg";
+import { FaRegEdit } from "react-icons/fa";
 
 const SideBar = () => {
   const [open, setOpen] = useState(false);
@@ -22,7 +24,44 @@ const SideBar = () => {
       >
         <span className="h-full w-1.5 left-0 bg-[#9b9b9b] group-hover:bg-white duration-300 inline-block"></span>
       </button>
-      <p className="text-white">this is siderbar</p>
+
+      <div className="flex justify-between items-center">
+        <div className="text-white flex gap-x-2 items-center">
+          <img
+            className="bg-white p-1 rounded-full h-7 w-7"
+            src={Logo2}
+            alt="logo"
+          />
+          <p>New chat</p>
+        </div>
+        <button>
+          <FaRegEdit className="text-white" />
+        </button>
+      </div>
+
+      <div className="mt-10">
+        <div>
+          <p className="text-gray1 text-[12px] mb-1">Today</p>
+          <ul className="text-white">
+            <li className="mb-2">History title</li>
+            <li className="mb-2">History title2</li>
+            <li className="mb-2">History title3</li>
+            <li className="mb-2">History title4</li>
+            <li className="mb-2">History title5</li>
+          </ul>
+        </div>
+
+        <div className="mt-10">
+          <p className="text-gray1 text-[12px] mb-1">Yesterday</p>
+          <ul className="text-white">
+            <li className="mb-2">History title</li>
+            <li className="mb-2">History title2</li>
+            <li className="mb-2">History title3</li>
+            <li className="mb-2">History title4</li>
+            <li className="mb-2">History title5</li>
+          </ul>
+        </div>
+      </div>
     </aside>
   );
 };
