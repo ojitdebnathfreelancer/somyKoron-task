@@ -1,7 +1,19 @@
 import You from "../assets/you.png";
 import Logo2 from "../assets/logo.png";
 
-const MessageDisplay = () => {
+interface ChatMessage {
+  user: string;
+  boot: string;
+}
+
+const MessageDisplay = ({
+  isLoading,
+  chatData,
+}: {
+  isLoading: boolean;
+  chatData: ChatMessage[];
+}) => {
+  console.log(isLoading, chatData);
   return (
     <div className="lg:ml-10 md:ml-5 ml-2 text-white overflow-y-scroll no-scrollbar">
       <div className="mb-10">

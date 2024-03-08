@@ -14,10 +14,17 @@ const MessageField = ({
     setSendMessage(message);
   };
 
+  const handelEnter = (event: React.FormEvent<HTMLFormElement>) => {
+    if (event.key === "Enter") {
+      setSendMessage(message);
+    }
+  };
+
   return (
     <div>
       <form
         onSubmit={handleSubmit}
+        onKeyDown={handelEnter}
         className="flex border border-gray1 rounded-lg overflow-hidden px-3 py-4"
       >
         <textarea
@@ -32,6 +39,7 @@ const MessageField = ({
             isDisabled ? "bg-gray1/50" : "bg-white"
           } rounded-lg p-2`}
           title="Send message"
+          type="submit"
         >
           <FaArrowUp size={15} className="font-bold" />
         </button>
