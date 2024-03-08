@@ -3,21 +3,22 @@ import { FaArrowUp } from "react-icons/fa6";
 
 const MessageField = ({
   setSendMessage,
+  isLoading,
 }: {
   setSendMessage: (message: string) => void;
+  isLoading: boolean;
 }) => {
   const [message, setMessage] = useState("");
-  const isDisabled = message.length === 0;
+  const isDisabled = message.length === 0 || isLoading;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSendMessage(message);
   };
 
-  const handelEnter = (event: React.FormEvent<HTMLFormElement>) => {
+  const handelEnter = (event: React.KeyboardEvent<HTMLFormElement>) => {
     if (event.key === "Enter") {
       setSendMessage(message);
-      event.target.value = "";
     }
   };
 

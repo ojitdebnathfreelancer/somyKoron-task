@@ -78,7 +78,7 @@ const MainLayout = () => {
         <Header open={open} />
         <div className="max-w-3xl h-full mx-auto pt-16 flex flex-col justify-between lg:px-0 md:px-5 px-2">
           <MessageDisplay isLoading={isLoading} chatData={chatData} />
-          <MessageField setSendMessage={setSendMessage} />
+          <MessageField setSendMessage={setSendMessage} isLoading={isLoading} />
         </div>
       </main>
     </div>
