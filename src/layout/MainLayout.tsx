@@ -33,13 +33,16 @@ const MainLayout = () => {
     const sendPrompt = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("http://localhost:5000/", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ prompt: sendMessage }),
-        });
+        const response = await fetch(
+          "https://somy-koron-task-server.vercel.app/",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ prompt: sendMessage }),
+          }
+        );
 
         const data = await response.json();
 
