@@ -6,6 +6,7 @@ import MessageDisplay from "../components/MessageDisplay";
 
 const MainLayout = () => {
   interface ChatMessage {
+    id: number;
     user: string;
     boot: string;
   }
@@ -25,6 +26,10 @@ const MainLayout = () => {
     if (!sendMessage) return;
     let ignore = false;
 
+    const id = chatData.length + 1;
+
+    setChatData([...chatData, { id: id, user: sendMessage, boot: "" }]);
+
     const sendPrompt = async () => {
       try {
         setIsLoading(true);
@@ -39,15 +44,20 @@ const MainLayout = () => {
         const data = await response.json();
 
         if (!ignore) {
+          const filtered = chatData.filter((item) => item.id !== id);
           setChatData([
-            ...chatData,
-            { boot: data.join().replace(/,/g, ""), user: sendMessage },
+            ...filtered,
+            { id: id, user: sendMessage, boot: data.join().replace(/,/g, "") },
           ]);
 
           setSendMessage("");
+          setIsLoading(false);
         }
       } catch (error) {
-        console.error(error);
+        const filtered = chatData.filter((item) => item.id !== id);
+        setChatData([...filtered]);
+        setIsLoading(false);
+        alert(error);
       }
     };
 
@@ -57,8 +67,6 @@ const MainLayout = () => {
       ignore = true;
     };
   }, [sendMessage]);
-
-  console.log(chatData);
 
   return (
     <div className="flex h-screen overflow-hidden">

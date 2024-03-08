@@ -13,38 +13,49 @@ const MessageDisplay = ({
   isLoading: boolean;
   chatData: ChatMessage[];
 }) => {
-  console.log(isLoading, chatData);
   return (
     <div className="lg:ml-10 md:ml-5 ml-2 text-white overflow-y-scroll no-scrollbar">
-      <div className="mb-10">
-        <p className="flex items-center gap-x-3 font-semibold">
-          <img src={You} alt="user image" className="h-8 w-8 rounded-full" />
-          <span>You</span>
-        </p>
-        <p className="ml-10">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, sint
-          nulla recusandae pariatur quia fugit vitae, quisquam reprehenderit
-          quod voluptate magnam illo officia porro inventore minima! Quaerat
-          fugit ipsa neque?
-        </p>
-      </div>
+      {chatData?.length ? (
+        <>
+          {chatData.map((chat, i) => (
+            <div className="mb-10" key={i + 1}>
+              {chat?.user && (
+                <div className="mb-10">
+                  <p className="flex items-center gap-x-3 font-semibold">
+                    <img
+                      src={You}
+                      alt="user image"
+                      className="h-8 w-8 rounded-full"
+                    />
+                    <span>You</span>
+                  </p>
+                  <p className="ml-10">{chat?.user}</p>
+                </div>
+              )}
 
-      <div>
-        <p className="flex items-center gap-x-3 font-semibold">
-          <img
-            src={Logo2}
-            alt="user image"
-            className="h-8 w-8 rounded-full bg-green-600 fill-white"
-          />
-          <span>ChatGPT</span>
-        </p>
-        <p className="ml-10">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, sint
-          nulla recusandae pariatur quia fugit vitae, quisquam reprehenderit
-          quod voluptate magnam illo officia porro inventore minima! Quaerat
-          fugit ipsa neque?
-        </p>
-      </div>
+              {isLoading && <p>Generating...</p>}
+
+              {chat?.boot && (
+                <div>
+                  <p className="flex items-center gap-x-3 font-semibold">
+                    <img
+                      src={Logo2}
+                      alt="user image"
+                      className="h-8 w-8 rounded-full bg-green-600 fill-white"
+                    />
+                    <span>ChatGPT</span>
+                  </p>
+                  <p className="ml-10">{chat?.boot}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </>
+      ) : (
+        <div className="h-[75vh] flex justify-center items-center">
+          <p className="text-2xl font-semibold">Write something for get info</p>
+        </div>
+      )}
     </div>
   );
 };

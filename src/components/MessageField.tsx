@@ -17,6 +17,7 @@ const MessageField = ({
   const handelEnter = (event: React.FormEvent<HTMLFormElement>) => {
     if (event.key === "Enter") {
       setSendMessage(message);
+      event.target.value = "";
     }
   };
 
@@ -27,8 +28,8 @@ const MessageField = ({
         onKeyDown={handelEnter}
         className="flex border border-gray1 rounded-lg overflow-hidden px-3 py-4"
       >
-        <textarea
-          rows={1}
+        <input
+          name="message"
           className="bg-primary-dark w-full resize-none placeholder:font-semibold no-scrollbar outline-none caret-white text-white"
           placeholder="Message ChatGPT..."
           onChange={(e) => setMessage(e.target.value)}
