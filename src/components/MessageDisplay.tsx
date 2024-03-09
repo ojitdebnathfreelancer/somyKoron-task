@@ -33,8 +33,6 @@ const MessageDisplay = ({
                 </div>
               )}
 
-              {isLoading && <p>Generating...</p>}
-
               {chat?.boot && (
                 <div>
                   <p className="flex items-center gap-x-3 font-semibold">
@@ -50,6 +48,7 @@ const MessageDisplay = ({
               )}
             </div>
           ))}
+          {isLoading && <p>Generating...</p>}
         </>
       ) : (
         <div className="h-[75vh] flex justify-center items-center">

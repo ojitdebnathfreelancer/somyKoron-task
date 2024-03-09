@@ -3,6 +3,7 @@ import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import MessageField from "../components/MessageField";
 import MessageDisplay from "../components/MessageDisplay";
+import axios from "axios";
 
 const MainLayout = () => {
   interface ChatMessage {
@@ -33,18 +34,13 @@ const MainLayout = () => {
     const sendPrompt = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(
-          "https://somy-koron-task-server.vercel.app/",
-          {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ prompt: sendMessage }),
-          }
+
+        const response = await axios.post(
+          "https://somykoron-task-server.onrender.com/prediction",
+          { prompt: sendMessage }
         );
 
-        const data = await response.json();
+        const data = response?.data;
 
         if (!ignore) {
           const filtered = chatData.filter((item) => item.id !== id);
